@@ -14,7 +14,7 @@ This setup works for me to provide the sensors and entities into Home Assistant 
 
 The water meter pulses when water flows through. So it was very simple to hook it up to the ESP board to get it to read. I attached the water meter between pins D3 and GND. I used a connector to make it more modular, but you can solder it directly on.
 
-![Picture](https://github.com/user-attachments/assets/2dfcf570-a387-4d5e-80a7-56d0184217f8)
+![Picture](https://github.com/user-attachments/assets/ca90dd0a-937d-47ac-80f3-f1b67b773c0d)
 
 Otherwise, it's just a matter of plumbing as you'd normally do. My motivator for this was to monitor how much water flowed through my whole house water filter, so I plumbed it after the PRV, but before the filter setup.
 
@@ -25,7 +25,7 @@ I'm powering my ESP with a USB and wall plug. It wasn't worth it to me to come u
 
 So I'm going to assume that you already have a running Home Assistant setup, with the ESPHome Builder Node-RED addons already setup. This is how I have my cards set up, Lovelace code included:
 
-![Screen Shot 2025-06-18 at 3 58 10 PM](https://github.com/user-attachments/assets/e28d9d91-2729-44cd-874d-e2297f1169f4)
+![Screen Shot 2025-06-19 at 2 36 23 PM](https://github.com/user-attachments/assets/6b02f86f-da57-4b71-b9f0-e52bbb586bde)
 
 ## ESPHome
 
@@ -56,7 +56,7 @@ When that's all done, go to the Developer Tools and check your configuration. Ho
 
 Open Node-RED, go to your hamburger menu on the top right, click Import, then paste in the Node-RED.json code. You'll PROBABLY have to update things like the server, any changed entity names, and the device(s) you want to notify. This might be the most finicky part for you. I love Node-RED, but I spend a ton of time troubleshooting my stuff lol.
 
-![Screen Shot 2025-06-18 at 4 19 40 PM](https://github.com/user-attachments/assets/3877c059-f9a0-48d1-a2b2-31635402c31e)
+![Screen Shot 2025-06-19 at 2 38 53 PM](https://github.com/user-attachments/assets/c12d44c7-bf1e-4b1c-9e94-fcd235fd7538)
 
 When it looks like there aren't any more issues, deploy it. Hopefully it worked.
 
