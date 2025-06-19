@@ -1,0 +1,27 @@
+# ====================================
+#
+# Water Filter Usage Percentage
+#
+# ====================================
+- sensor:
+    - name: "Water Usage Percentage"
+      unit_of_measurement: "%"
+      state: >
+        {% set sensor1 = states('input_number.water_meter_threshold') | float(0) %}
+        {% set sensor2 = states('sensor.total_water_used_combined') | float(1) %}
+        {{ ((sensor2 / sensor1) * 100) | round(2) }}
+
+- sensor:
+    - name: "Total Water Used Combined"
+      unique_id: total_water_used_combined
+      unit_of_measurement: "gal"
+      state_class: "total"
+      device_class: "water"
+      state: >
+        {% set meter = states('sensor.water_meter_2_total_water_used_2') | float(0) %}
+        {% set offset = states('input_number.total_water_used_offset') | float(0) %}
+        {% if meter in ['unknown', 'unavailable'] %}
+          {{ offset }}
+        {% else %}
+          {{ meter | float(0) + offset }}
+        {% endif %}
