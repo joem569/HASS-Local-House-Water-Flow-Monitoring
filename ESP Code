@@ -1,0 +1,51 @@
+esphome:
+  name: "water-meter"
+
+esp8266:
+  board: d1_mini
+  restore_from_flash: true
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_pass
+
+sensor:
+  - platform: pulse_meter
+    pin: 
+      number: GPIO0  # < - make sure that this is actually the pin you wired the meter to. GPIO0 is pin D3 for the ESP board I'm using
+      mode: INPUT_PULLUP
+    name: "Water Flow Rate"
+    id: water_flow_rate
+    unit_of_measurement: "gal/min"
+    accuracy_decimals: 1
+    icon: "mdi:water"
+    timeout: 60s
+    total:
+      name: "Total Water Used"
+      id: total_water_used
+      unit_of_measurement: "gal"
+      accuracy_decimals: 1
+      device_class: "water"
+      state_class: "total_increasing"
+
+    # Conversion factor: 1 pulse = 1.0 gallons
+    filters:
+      - multiply: 1.0  # < - make sure that this is actually what your water meter uses for pulses per gallon. This value will equal however mane gallons per pulse. 
+
+
+binary_sensor:
+  - platform: template
+    name: "Water Running"
+    lambda: |-
+      return id(water_flow_rate).state > 0.0;
+    device_class: running
