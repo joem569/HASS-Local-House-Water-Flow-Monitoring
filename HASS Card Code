@@ -1,0 +1,43 @@
+type: vertical-stack
+cards:
+  - type: gauge
+    entity: sensor.water_usage_percentage
+    needle: false
+    max: 100
+    min: 0
+    segments:
+      - from: 0
+        color: "#4DDC2E"
+      - from: 75
+        color: "#F1F545"
+      - from: 95
+        color: "#F31F1D"
+    name: " "
+  - type: entities
+    entities:
+      - entity: sensor.total_water_used_combined
+        name: Total Water Used
+        secondary_info: last-changed
+      - entity: sensor.water_meter_2_water_flow_rate_2
+        name: Flow Rate
+      - entity: binary_sensor.water_meter_2_water_running
+        name: Status
+      - entity: input_number.water_meter_threshold
+        name: Threshold Value
+        icon: mdi:water
+      - entity: input_number.true_water_used_update
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            name: Update Total
+            tap_action:
+              action: call-service
+              service: input_button.press
+              target:
+                entity_id: input_button.water_update
+            icon_height: 60px
+            icon: mdi:update
