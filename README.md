@@ -23,7 +23,9 @@ I'm powering my ESP with a USB and wall plug. It wasn't worth it to me to come u
 
 # Software Setup
 
-So I'm going to assume that you already have a running Home Assistant setup, with the ESPHome Builder Node-RED addons already setup. This is how I have my cards set up, Lovelace code included:
+So I'm going to assume that you already have a running Home Assistant setup, with the ESPHome Builder, Node-RED, and Studio Code Server (or any code editor) addons already setup. 
+
+This is how I have my cards set up, Lovelace code included:
 
 ![Screen Shot 2025-06-19 at 2 36 23 PM](https://github.com/user-attachments/assets/6b02f86f-da57-4b71-b9f0-e52bbb586bde)
 
@@ -32,7 +34,7 @@ So I'm going to assume that you already have a running Home Assistant setup, wit
 I'm not going to lie and say that I DIDN'T just set up my secrets properly in ESPHome right before typing this writeup lol, but you should be using the secrets if you're not already. My code uses it, so you'll have to figure that out. You probably have to name your ESP "water-meter" to make my code copy-paste, but if you name it something else, you'll have to figure out what to change. 
 
 
-Make sure that you update the pin to be the pin that you actually used.
+Make sure that you update the pin in the code to be the pin that you actually used.
 
 
 And if you're using a different water meter than I used, you have to find out one important piece of information for the meter: the pulses per gallon. In the code, you have to update the multiply line to reflect the pulses per gallon. The meter I used, it was 1 pulse per gallon. Easy.
@@ -50,7 +52,7 @@ I have my Home Assistant configuration [split](https://www.home-assistant.io/doc
 
 You'll need to copy-paste the HASS Template Code into your templates.yaml file.
 
-When that's all done, go to the Developer Tools and check your configuration. Hopefully we didn't mess things up and you get the green check. Reload all YAML configuration.
+When that's all done, go to the Developer Tools and check your configuration. Hopefully we didn't mess things up and you get the green check. Restart HASS, a full restart is required for the input_numbers and sensors to load properly.
 
 ## Node-RED
 
@@ -69,10 +71,11 @@ Pick your dashboard, make a new card, any card, then go to the code editor for t
 
 So what you now have is a card that monitors the water measured by the water meter. The Node-RED stuff basically makes sure that:
 - If the ESP power cycles, HASS remembers and reloads the previous meter readings.
+- Gives you a box and to put in your current meter reading. Type that in and hit the "Update Total," button. That does a little math behind the scenes and makes the values read right in HASS.
 - Sends alerts when the water is running for too long (left over code from J-Pipe, thanks!)
 - Sends alerts when the water is running when it's late at night (left over code from J-Pipe, thanks!)
 - Sends alerts when nobody is home (left over code from J-Pipe, thanks!)
-- Sends an alert when the water used goes over the defined threshold, I used this for the water filter setup
+- Sends an alert when the water used goes over the defined threshold, I used this for the water filter setup.
 
 
 If you want, you can disable the alerts in Node-RED, or go into the "When sleeping, or no one is home, Send notification," node and change the times and notification destinations.
