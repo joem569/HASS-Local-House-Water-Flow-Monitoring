@@ -33,3 +33,8 @@ input_number:
     step: 0.1
     unit_of_measurement: "gal"
     mode: box
+
+input_button:
+  water_update:
+    name: Update Water Total
+    icon: mdi:water-pump
