@@ -1,0 +1,35 @@
+# ====================================
+#
+# Water Meter Backup Readings
+#
+# ====================================
+input_number:
+  total_water_used_offset:
+    name: Total Water Used Offset
+    min: 0
+    max: 1000000000
+    step: 0.1
+    unit_of_measurement: "gal"
+
+  total_water_used_checkpoint:
+    name: Total Water Used Checkpoint
+    min: 0
+    max: 1000000000
+    step: 0.1
+    unit_of_measurement: "gal"
+
+  true_water_used_update:
+    name: True Water Used Update
+    min: 0
+    max: 1000000000
+    step: 0.1
+    unit_of_measurement: "gal"
+    mode: box
+
+  water_meter_threshold:
+    name: Water Meter Threshold
+    min: 0
+    max: 1000000000
+    step: 0.1
+    unit_of_measurement: "gal"
+    mode: box
