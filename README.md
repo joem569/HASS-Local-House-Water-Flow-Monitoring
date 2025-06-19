@@ -1,6 +1,6 @@
 # HASS-Local-House-Water-Flow-Monitoring
 
-This setup works for me to provide the sensors and entities into Home Assistant that let you monitor your whole house water usage using ESPHome and Node-RED. It is HEAVILY based on J-Pipe's Whole-House-Water-Monitoring setup. It was broken recently, and I couldn't update the WIFI credentials, so I had to try to figure out how to update it. I'm still using the unchanged hardware that he cited. I'll link the Amazon listings for what I bought below.
+This setup works for me to provide the sensors and entities into Home Assistant that let you monitor your whole house water usage using ESPHome and Node-RED. It is HEAVILY based on [J-Pipe's Whole-House-Water-Monitoring](https://github.com/J-Pipe/Whole-House-Water-Monitoring) setup. It was broken recently, and I couldn't update the WIFI credentials, so I had to try to figure out how to update it. I'm still using the unchanged hardware that he cited. I'll link the Amazon listings for what I bought below.
 
 
 # Parts List
