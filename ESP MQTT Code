@@ -1,5 +1,5 @@
 esphome:
-  name: "water-meter"
+  name: "water-meter-2"
 
 esp8266:
   board: d1_mini
@@ -21,14 +21,14 @@ ota:
 sensor:
   - platform: pulse_meter
     pin: 
-      number: GPIO0  # < - make sure that this is actually the pin you wired the meter to. GPIO0 is pin D3 for the ESP board I'm using
+      number: GPIO0
       mode: INPUT_PULLUP
     name: "Water Flow Rate"
     id: water_flow_rate
     unit_of_measurement: "gal/min"
     accuracy_decimals: 1
     icon: "mdi:water"
-    timeout: 60s
+    timeout: 242s
     total:
       name: "Total Water Used"
       id: total_water_used
@@ -39,7 +39,8 @@ sensor:
 
     # Conversion factor: 1 pulse = 1.0 gallons
     filters:
-      - multiply: 1.0  # < - make sure that this is actually what your water meter uses for pulses per gallon. This value will equal however mane gallons per pulse. 
+      - multiply: 1.0
+      - debounce: 50ms
 
 
 binary_sensor:
